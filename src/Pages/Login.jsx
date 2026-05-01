@@ -26,6 +26,7 @@ const Login = () => {
     // 🚀 Handle Submit
     const handleSubmit = async (e) => {
         e.preventDefault();
+        e.stopPropagation();
         setIsSubmitted(true);
 
         if (state === "login") {
