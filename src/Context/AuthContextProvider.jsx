@@ -4,7 +4,7 @@ import axios from "axios";
 import apiURL from "../Constants/constant.js";
 
 const AuthContextProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [medicines, setMedicines] = useState([]);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
