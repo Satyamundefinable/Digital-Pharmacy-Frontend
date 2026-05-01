@@ -22,7 +22,7 @@ const Medicines = () => {
   return (
     <div style={{ display: "flex", justifyContent: "space-evenly", flexWrap: "wrap" }}>
       {
-        medicines.map((med) => (
+        medicines && medicines.map((med) => (
           <MedicineCard key={med._id} medicineId={med._id} medicine={med} />
         ))
 
