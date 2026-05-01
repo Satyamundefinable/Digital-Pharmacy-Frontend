@@ -47,7 +47,7 @@ const About = () => {
             </p>
           </div>
         </div>
-        <p>explore us</p>
+        
       </div>
 
       

@@ -15,7 +15,7 @@ const CartMedicineCard = ({ medicine, quantity }) => {
       <div className="card-body">
         <p><strong>Category:</strong> {medicine?.category}</p>
         <p><strong>Form:</strong> {medicine?.form}</p>
-        <p><strong>Price:</strong> ₹{medicine?.price}</p>
+        <p><strong>Price:</strong> ₹{medicine?.price}/-</p>
         <p><strong>Quantity:</strong> {quantity || 0}</p>
         <p>
           <strong>Prescription :</strong>{" "}

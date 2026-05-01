@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import MedicineCard from './MedicineCard'
 import CartMedicineCard from './CartMedicineCard.jsx'
 import apiURL from '../Constants/constant.js'
 

@@ -4,12 +4,13 @@ import axios from "axios";
 import apiURL from "../Constants/constant.js";
 
 const AuthContextProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [medicines, setMedicines] = useState([]);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const fetchUser = async (token) => {
-    return axios.get(`${apiURL}/auth/get-user`,
+    return await axios.get(`${apiURL}/auth/get-user`,
       {
         withCredentials: true,
         headers: {
@@ -19,7 +20,7 @@ const AuthContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-  const initAuth = async () => {
+  const checkUser = async () => {
     const token = localStorage.getItem("accessToken");
 
     if (!token) {
@@ -33,6 +34,8 @@ const AuthContextProvider = ({ children }) => {
       setIsAuthenticated(true);
 
     } catch (err) {
+      console.log("Not able to refresh token", err);
+      
       try {
         const refreshRes = await axios.get(
           `${apiURL}/auth/refreshAccessToken`,
@@ -47,7 +50,8 @@ const AuthContextProvider = ({ children }) => {
         setIsAuthenticated(true);
 
       } catch (error) {
-        localStorage.clear();
+        console.log("Access Token Error", error)
+        localStorage.removeItem("accessToken");
         setUser(null);
         setIsAuthenticated(false);
       }
@@ -56,7 +60,7 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  initAuth();
+  checkUser();
 }, []);
 
   return (
@@ -67,6 +71,8 @@ const AuthContextProvider = ({ children }) => {
         user,
         setUser,
         loading,
+        medicines,
+        setMedicines
       }}
     >
       {children}

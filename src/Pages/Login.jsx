@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "../Style/Login.css"
 import { AuthContext } from "../Context/authContext.js";
 import apiURL from "../Constants/constant.js";
-// import cookie from "js-cookie"
 
 
 
@@ -44,7 +43,8 @@ const Login = () => {
                         withCredentials: true
                     })
                     .then(async (res) => {
-
+                        console.log(apiURL);
+                        
                         if (res.data.success) {
                             // console.log("Backend data : ", res.data.isAuthenticated);
                             const { accessToken } = res.data;
@@ -79,6 +79,7 @@ const Login = () => {
                             setIsAuthenticated(false)
                             setEmail("")
                             setPassword("")
+                            setIsSubmitted(false);
                         }
 
                     })
@@ -113,7 +114,7 @@ const Login = () => {
 
                 if (res.data.success) {
                     // const accessToken = res.data.accessToken
-                    const { accessToken } = res.data;
+                    const accessToken  = res.data.accessToken;
 
                     localStorage.setItem("accessToken", accessToken)
                     setSuccess(true);
@@ -134,44 +135,9 @@ const Login = () => {
 
 
 
-        // try {
-        //     axios.post(
-        //         import.meta.env.LOGIN_URL,
-        //         {
-        //             name, email, password
-        //         }
-        //     ).then((res) => {
-
-        //         if (res.data.success) {
-        //             setIsAuthenticated(true);
-        //             navigate("/");
-        //             setSuccess(true);
-        //         }
-
-        //     }).catch((err) => {
-
-        //         alert("an error occured while sending data", err)
-
-        //     })
-
-        // } catch (error) {
-        //     setError("An error occured", error)
-        // }
+        
 
     };
-
-
-    // useEffect(() => {
-    //     alert("Details Submitted, please wait..")
-    // }, [])
-
-
-
-
-
-
-
-
 
     return (
         <div className="container" >
@@ -200,7 +166,12 @@ const Login = () => {
                                 onChange={e => setPassword(e.target.value)}
                             />
 
-                            <button className="button" type="submit" disabled={isSubmitted} >
+                            <button
+                                style={{
+                                    opacity: isSubmitted ? "0.5" : "1",
+                                    cursor: isSubmitted ? "not-allowed" : "pointer"
+                                }}
+                                className="button" type="submit" disabled={isSubmitted} >
                                 Login
                             </button>
                         </form>
@@ -254,7 +225,12 @@ const Login = () => {
                                     onChange={e => setPassword(e.target.value)}
                                 />
 
-                                <button className="button" type="submit" disabled={isSubmitted} >
+                                <button
+                                    style={{
+                                        opacity: isSubmitted ? "0.5" : "1",
+                                        cursor: isSubmitted ? "not-allowed" : "pointer"
+                                    }}
+                                    className="button" type="submit" disabled={isSubmitted} >
                                     Sign Up
                                 </button>
                             </form>

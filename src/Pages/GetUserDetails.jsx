@@ -10,6 +10,7 @@ const GetUserDetails = () => {
     <div>
       <h2>User Details</h2>
       <pre>{JSON.stringify(user, null, 2)}</pre>
+      <pre>{user}</pre>
     </div>
   );
 };
