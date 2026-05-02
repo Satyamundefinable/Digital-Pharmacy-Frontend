@@ -12,7 +12,7 @@ const MyCart = () => {
   
     useEffect(() => {
       const fetchData = async () => {
-        axios.get(`${apiURL}/medicines/get-cart`,{
+       await axios.get(`${apiURL}/medicines/get-cart`,{
         withCredentials : true
       })
         .then((res) => {

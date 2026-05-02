@@ -1,5 +1,6 @@
 import axios from "axios";
 import "../Style/MedicineCard.css";
+import apiURL from "../Constants/constant";
 
 const MedicineCard = ({ medicine, medicineId }) => {
 
@@ -8,7 +9,7 @@ const MedicineCard = ({ medicine, medicineId }) => {
   // const [success, setSuccess] = useState("")
    
     const addToCart =  async () => {
-     await axios.post("http://localhost:5000/api/medicines/add-medicine",{medicineId},
+     await axios.post(`${apiURL}/medicines/add-medicine`,{medicineId},
       {
         withCredentials : true
       }
