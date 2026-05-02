@@ -5,13 +5,17 @@ import apiURL from "../Constants/constant";
 const MedicineCard = ({ medicine, medicineId }) => {
 
   // console.log(medicineId);
+  const token = localStorage.getItem("accessToken");
   
   // const [success, setSuccess] = useState("")
    
     const addToCart =  async () => {
      await axios.post(`${apiURL}/medicines/add-medicine`,{medicineId},
       {
-        withCredentials : true
+        withCredentials : true,
+        headers : {
+          Authorization : `Bearer ${token}`
+        }
       }
      )
    .then((res) => {
